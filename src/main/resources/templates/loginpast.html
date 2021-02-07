@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台登陆</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+</head>
+<body>
+<body style="padding: 10px;">
+<!--<fieldset class="layui-elem-field layui-field-title" >-->
+<!--    <legend>商品管理系统登录界面</legend>-->
+<!--</fieldset>-->
+
+<form class="layui-form layui-form-pane" th:action="@{/user/login}"  >
+<div class="container" >
+    <fieldset class="layui-elem-field layui-field-title " style="text-align: center" >
+        <legend style="text-align: center">商品管理系统登录界面</legend>
+    </fieldset>
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户账号</label>
+        <div class="layui-input-inline">
+            <label>
+                <input  name="username"  placeholder="请输入用户"  class="layui-input">
+            </label>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">用户密码</label>
+        <div class="layui-input-inline">
+            <label>
+                <input  name="password"  type="password" placeholder="请输入密码"  class="layui-input">
+            </label>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <label class="layui-form-label">验证码</label>
+        <div class="layui-input-inline">
+            <label>
+                <input  name="code"  placeholder="请输入验证码" style="width:60%; float:left " class="layui-input verity">
+                <img  id="num" th:src="@{/user/code}" style="width:40%;float:right;height: 40px;position: relative ;left: 15px" alt="网络错误" th:onclick="document.getElementById('num').src = '/web/user/code?'+(new Date()).getTime()">
+<!--                <a href="javascript:;"  style="float: right" onclick="document.getElementById('num').src = '/web/user/code?'+(new Date()).getTime()">点我换一张</a>-->
+            </label>
+            <label class="layui-form-item" >
+            <label/>
+        </div>
+    </div>
+
+    <div class="layui-form-item">
+        <div class="layui-input-block">
+            <button class="layui-btn" >登录</button>
+        </div>
+    </div>
+</div>
+</form>
+
+<style type="text/css">
+    .container{
+        width: 600px;
+        height: 320px;
+        min-height: 320px;
+        max-height: 320px;
+        position: absolute;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        right: 0;
+        margin: auto;
+        padding: 20px;
+        z-index: 130;
+        border-radius: 8px;
+        background-color: #fff;
+        box-shadow: 0 3px 18px rgba(100, 0, 0, .5);
+        font-size: 16px;
+    }
+    .close{
+        background-color: white;
+        border: none;
+        font-size: 18px;
+        margin-left: 410px;
+        margin-top: -10px;
+    }
+
+    .layui-input{
+        border-radius: 5px;
+        width: 200px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .layui-form-item{
+        margin-right: 20px;
+    }
+    #logoid{
+        margin-top: -16px;
+        padding-left:150px;
+        padding-bottom: 15px;
+    }
+    .layui-btn{
+        margin-left: 10px;
+        border-radius: 5px;
+        width: 100px;
+        height: 40px;
+        font-size: 15px;
+    }
+    .verity{
+        width: 120px;
+    }
+    .font-set{
+        font-size: 13px;
+        text-decoration: none;
+        margin-left: 120px;
+    }
+    a:hover{
+        text-decoration: underline;
+    }
+
+</style>
+
+</body>
+</html>

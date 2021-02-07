@@ -1,0 +1,17 @@
+body{
+    margin: 0;
+    padding: 0;
+    background: url(background1.jpg);
+    background-size: cover;
+}
+
+.container{
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 700px;
+    height: 420px;
+    border-radius: 5px;
+    border: 10px solid rgba(255,255,255,.2);
+    box-shadow: 10px 10px 15px rgba(0,0,0,.5);
+}

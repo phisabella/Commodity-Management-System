@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>后台登陆</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+<!--    <link th:href="@{loginstyle.css}" rel="stylesheet">-->
+</head>
+
+<body>
+
+
+    <div class="container">
+        <div class="titlebox">
+            <h1 style="letter-spacing:8px;position: relative ;bottom: -6px "> 商品管理系统登录界面</h1>
+            <h2 style="word-spacing:5px;position: relative ;bottom: -8px"> Commodity Management System Login Interface</h2>
+        </div>
+
+        <div class="loginbox">
+
+            <div style="position: relative;top: 30px;left: 70px" class="pic">
+                <img style="height: 180px;width: 180px" src="logo1.png">
+            </div>
+
+        <div class="putin">
+            <form th:action="@{/user/login}">
+                <div style="margin-top: 30px" class="layui-form-item">
+                    <label   class="layui-form-label">用户名</label>
+                    <div class="layui-input-block">
+                        <input name="username" style="width: 240px" class="layui-input" type="text" placeholder="请输入用户" >
+                    </div>
+                </div>
+                <div style="margin-top: 30px" class="layui-form-item">
+                    <label   class="layui-form-label">密&nbsp;&nbsp;&nbsp;&nbsp;码</label>
+                    <div class="layui-input-block">
+                        <input name="password" style="width: 240px" class="layui-input" type="password" placeholder="请输入密码" >
+                    </div>
+                </div>
+                <div style="margin-top: 30px" class="layui-form-item">
+                    <label   class="layui-form-label">验证码</label>
+                    <div class="layui-input-block">
+                        <input name="code" class="layui-input" type="text" style="float:left;height: 40px;position:relative;width: 140px" placeholder="请输入验证码" >
+                        <img  id="num" th:src="@{/user/code}" style="float:right;height: 38px;position: relative ;right: 70px" alt="网络错误"
+                              th:onclick="document.getElementById('num').src = '/web/user/code?'+(new Date()).getTime()">
+                    </div>
+                </div>
+
+<!--                <div style="margin-top: 30px"  class="inputBox">-->
+<!--                    <label  type="text">用户名</label>-->
+<!--                    <input id="name" type="text" name="username"   placeholder="请输入用户"  >-->
+<!--                </div>-->
+<!--                <div  style="margin-top: 30px" class="inputBox">-->
+<!--                    <label type="text">密码</label>-->
+<!--                    <input id="pass" type="password" name="password"  placeholder="请输入密码" >-->
+<!--                </div>-->
+<!--                <div  style="margin-top: 30px" class="inputBox">-->
+<!--                    <label type="text">验证码</label>-->
+<!--                    <input id="code" name="code"  placeholder="请输入验证码" >-->
+<!--                </div>-->
+<!--                <div id="btn" style="margin-top: 30px" class="inputBox">-->
+<!--                    <input type="submit" value="登录" name="submit"  placeholder="请输入验证码" >-->
+<!--                </div>-->
+                <div class="layui-form-item">
+                    <div class="layui-input-block">
+                        <button type="submit" style="background: #1E9FFF" class="layui-btn" >立即提交</button>
+                        <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+
+        </div>
+    </div>
+
+
+</body>
+
+<style>
+    body{
+        margin: 0;
+        padding: 0;
+        background: url(login.jpg);
+        /*background: #0C0C0C;*/
+        background-size: cover;
+    }
+
+    .container{
+        position: absolute;
+        background: #fbfbfb;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50% ,-50%);
+        width: 700px;
+        height: 380px;
+        border-radius: 5px;
+        border: 2px solid rgba(255,255,255,.2);
+
+    }
+
+    .titlebox{
+        width: 700px;
+        height: 80px;
+        float: top;
+        color: #fbfbfb;
+        text-align: center;
+        background: #2E2D3C;
+    }
+
+    .loginbox{
+        float: bottom;
+        width: 700px;
+        height: 295px;
+        box-sizing: border-box;
+
+        background: #fbfbfb;
+    }
+
+    .loginbox input{
+        width: 40%;
+        margin-bottom: 10px;
+    }
+
+    .loginbox input[id="name"]{
+        height: 40px;
+        /*border: #0C0C0C;*/
+        border-inline: #0C0C0C;
+        border-radius: 2px;
+    }
+
+    .loginbox input[id="pass"]{
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+     }
+
+    .loginbox input[id="code"]{
+        height: 40px;
+        border: none;
+        border-radius: 5px;
+    }
+
+    .pic{
+        float: left;
+        width: 40%;
+
+    }
+
+    .putin{
+        float: right;
+        width: 60%;
+    }
+
+
+</style>
+
+
+</html>

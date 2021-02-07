@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <title>商品管理系统</title>
+    <link th:href="@{/layui/css/layui.css}" rel="stylesheet" />
+</head>
+<style>
+    html *
+    {
+        font-size: medium;
+    }
+</style>
+<body class="layui-layout-body">
+<div class="layui-layout layui-layout-admin ">
+    <div class="layui-header layui-bg-cyan" style="height: 90px" >
+<!--        <div class="layui-logo" > <img style="position:relative;left: 600px;width: 90px;height: 90px"  src="logo1.png"></div>-->
+        <!-- 头部区域（可配合layui已有的水平导航） -->
+
+        <div class="layui-logo"  style="font-size: 30px;top:15px;position: relative;left: 900px;color: white" > 商品管理系统</div>
+        <ul class="layui-nav layui-layout-right" style="position: relative;top: 20px">
+            <li class="layui-nav-item">
+                <a   >
+                    <span style="font-size: larger" th:text="${session.user.username}"/>
+                </a>
+            </li>
+            <li class="layui-nav-item" ><a style="font-size: larger" th:href="@{/user/login}"> <span style="font-size: 15px" class="layui-icon" >&#xe682;</span>退出登录</a></li>
+        </ul>
+    </div>
+
+    <div class="layui-side  layui-bg-cyan" style="font-size: medium;top: 90px">
+        <div class="layui-side-scroll ">
+            <!-- 左侧导航区域（可配合layui已有的垂直导航） -->
+            <ul  class="layui-nav layui-nav-tree layui-bg-cyan"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed"><a class="" style="font-size: medium" href="javascript:;"
+                                                               onclick="change('welcome')"><span class="layui-icon" style="font-size: 20px">&#xe60a; </span>&nbsp;&nbsp;&nbsp;平台概览</a></li>
+            <ul  class="layui-nav layui-nav-tree layui-bg-cyan"  lay-filter="test">
+                <li class="layui-nav-item layui-nav-itemed"><a class="" style="font-size: medium" href="javascript:;"
+                                                               onclick="change('index')"><span class="layui-icon" style="font-size: 20px">&#xe60a; </span>&nbsp;&nbsp;&nbsp;所有商品</a></li>
+
+                <li class="layui-nav-item"><a href="javascript:;" style="font-size: medium" onclick="change('index4')">
+                    <span class="layui-icon"style="font-size: 20px" > &#xe62d;</span>&nbsp;&nbsp;&nbsp;&nbsp;所有订单</a></li>
+
+                <li class="layui-nav-item layui-nav-itemed">
+                    <a href="javascript:; " style="font-size: medium">   <span class="layui-icon"style="font-size: 20px" >  &#xe629;</span>&nbsp;&nbsp;&nbsp;&nbsp;数据分析</a>
+                    <dl class="layui-nav-child layui-bg-cyan">
+                        <dd><a href="javascript:;" style="font-size: medium" onclick="change('bar')"><span class="layui-icon" style="font-size: 20px"> &#xe623;</span>&nbsp;&nbsp;&nbsp;&nbsp;销售额统计</a></dd>
+                        <dd><a href="javascript:;" style="font-size: medium" onclick="change('index3')"><span class="layui-icon" style="font-size: 20px">  &#xe623;</span>&nbsp;&nbsp;&nbsp;&nbsp;销量统计</a></dd>
+                    </dl>
+                </li>
+                <li class="layui-nav-item"><a href="javascript:;" onclick="change('index5')" style="font-size: medium">
+                    <span class="layui-icon" style="font-size: 15px">  &#xe613;</span>&nbsp;&nbsp;&nbsp;&nbsp;用户管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;" onclick="change('user/findLevel')" style="font-size: medium">
+                    <span class="layui-icon" style="font-size: 20px">  &#xe672;</span>&nbsp;&nbsp;&nbsp;&nbsp;权限管理</a></li>
+                <li class="layui-nav-item"><a href="javascript:;"
+                                              onclick="change('http://localhost:3000/d/IDpHk2nGz/xi-tong-jian-kong?orgId=1&refresh=5s&from=now-5m&to=now&forceLogin=true&kiosk')" style="font-size: medium">
+                    <span class="layui-icon" style="font-size: 20px;">  &#xe628;</span>&nbsp;&nbsp;&nbsp;&nbsp;服务器监控</a></li>
+            </ul>
+        </div>
+    </div>
+
+    <div class="layui-body">
+        <!-- 内容主体区域 -->
+        <div style="padding: 20px;">
+            <iframe th:src="@{/welcome}" style="width: 100%; height: 830px;border: none" ></iframe>
+        </div>
+    </div>
+
+    <div class="layui-footer">
+        <!-- 底部固定区域 -->
+        © 商品管理系统
+    </div>
+</div>
+
+<!--权限控制-->
+<input type="hidden" th:value="${session.level.kan}" name="read" id="read">
+<input type="hidden" th:value="${session.level.gai}" name="edit" id="edit">
+<input type="hidden" th:value="${session.level.shan}" name="delete" id="delete">
+<input type="hidden" th:value="${session.user.position}" name="pos" id="pos">
+<!--权限控制-->
+
+<script th:src="@{/layui/layui.js}"></script>
+<script th:src="@{jquery-3.5.1.min.js}"></script>
+
+
+
+<script>
+    var read=document.getElementById('read').value;
+    var edit=document.getElementById('edit').value;
+    var shan = document.getElementById('delete').value;
+    var pos = document.getElementById('pos').value;
+
+
+
+    //JavaScript代码区域
+    function change(title){
+        console.log("shan:"+shan);
+        console.log("title:"+title.value);
+        if(pos!="经理" && title=='user/findLevel' ){
+            alert("权限不足，无法进入权限管理界面")
+        }else {
+            $('iframe').attr('src',title);
+        }
+
+    }
+
+    layui.use('element', function(){
+        var element = layui.element;
+
+    });
+</script>
+</body>
+</html>
